@@ -3,37 +3,36 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameInitSystem : IEcsPreInitSystem, IEcsInitSystem, IEcsRunSystem, IEcsDestroySystem, IEcsPostDestroySystem
+namespace BalloonSurfer.Systems
 {
-    private EcsWorld _world = null;
-
-
-    public void PreInit()
+    public class GameInitSystem : IEcsInitSystem, IEcsDestroySystem
     {
-        
-    }
+        private EcsWorld _world = null;
 
-    public void Init()
-    {
-        var player = _world.NewEntity();
-        var moveSideComponent = player.Get<MoveSide>();
+        #region API
 
-        var playerPrefab = GameObject.Instantiate(MainData.Instance.playerInitData.prefab, Vector3.zero, Quaternion.identity);
-        moveSideComponent.speed = MainData.Instance.playerInitData.moveSideSpeed;
-    }
+        public void Init()
+        {
+            InitPlayer();
+        }
 
-    public void Run()
-    {
-        
-    }
+        public void Destroy()
+        {
 
-    public void Destroy()
-    {
-        
-    }
+        }
 
-    public void PostDestroy()
-    {
-        
+        #endregion
+
+
+        private void InitPlayer()
+        {
+            var player = _world.NewEntity();
+            ref var moveSideComponent = ref player.Get<MoveSideComponent>();
+            ref var movableComponent = ref player.Get<MovableComponent>();
+
+            var playerPrefab = GameObject.Instantiate(MainData.Instance.playerInitData.prefab, Vector3.zero, Quaternion.identity);
+            movableComponent.speed = MainData.Instance.playerInitData.moveSideSpeed;
+            moveSideComponent.transform = playerPrefab.transform;
+        }
     }
 }

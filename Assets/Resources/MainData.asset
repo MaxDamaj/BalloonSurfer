@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: MainData
   m_EditorClassIdentifier: 
   playerInitData: {fileID: 11400000, guid: 8f92019df8a17614d965bca55ab4f86b, type: 2}
+  enemiesInitData: {fileID: 11400000, guid: 8ce4fcbafb3909a4e843e4f201b0b484, type: 2}

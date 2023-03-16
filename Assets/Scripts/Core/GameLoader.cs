@@ -1,33 +1,42 @@
+using BalloonSurfer.Systems;
 using Leopotam.Ecs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameLoader : MonoBehaviour
+namespace BalloonSurfer.Core
 {
-    private EcsWorld _world = null;
-    private EcsSystems _systems = null;
-
-
-    void Start()
+    public class GameLoader : MonoBehaviour
     {
-        Application.targetFrameRate = Screen.currentResolution.refreshRate;
+        private EcsWorld _world = null;
+        private EcsSystems _systems = null;
 
-        _world = new EcsWorld();
-        _systems = new EcsSystems(_world);
 
-        _systems.Add(new GameInitSystem());
-        _systems.Init();
-    }
+        void Start()
+        {
+            Application.targetFrameRate = Screen.currentResolution.refreshRate;
 
-    void Update()
-    {
-        _systems.Run();
-    }
+            _world = new EcsWorld();
+            _systems = new EcsSystems(_world);
 
-    private void OnDestroy()
-    {
-        _systems.Destroy();
-        _world.Destroy();
+            _systems.Add(new GameInitSystem());
+            _systems.Add(new PlayerMoveSideSystem());
+            _systems.Add(new ScoreCountingSystem());
+            _systems.Add(new SpawnEnemiesSystem());
+            _systems.Add(new EnemyMoveSystem());
+
+            _systems.Init();
+        }
+
+        void Update()
+        {
+            _systems.Run();
+        }
+
+        private void OnDestroy()
+        {
+            _systems.Destroy();
+            _world.Destroy();
+        }
     }
 }

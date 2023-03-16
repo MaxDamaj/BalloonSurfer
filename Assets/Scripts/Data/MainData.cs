@@ -6,7 +6,9 @@ using UnityEngine;
 public class MainData : ScriptableObject
 {
     public PlayerInitData playerInitData;
+    public EnemiesInitData enemiesInitData;
 
+    #region Instance
 
     private static MainData _instance = null;
     public static MainData Instance
@@ -21,4 +23,6 @@ public class MainData : ScriptableObject
             return _instance;
         }
     }
+
+    #endregion
 }
