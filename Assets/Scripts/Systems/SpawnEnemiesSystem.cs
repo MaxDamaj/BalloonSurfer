@@ -1,4 +1,5 @@
 using BalloonSurfer.Components;
+using BalloonSurfer.Creators;
 using Leopotam.Ecs;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,11 +11,13 @@ namespace BalloonSurfer.Systems
     {
         private EcsWorld _world = null;
         private EcsFilter<MoveDownComponent, SpawnableComponent> _filter = null;
+        private EnemyCreator _enemyCreator;
 
         private float _spawnTime = 0;
 
         public void Init()
         {
+            _enemyCreator = new EnemyCreator();
             _spawnTime = MainData.Instance.fieldInitData.spawnDelayTime;
         }
 
@@ -37,22 +40,7 @@ namespace BalloonSurfer.Systems
         {
             if (_filter.GetEntitiesCount() < MainData.Instance.enemiesInitData.maxEnemiesOnField)
             {
-                var enemyData = MainData.Instance.enemiesInitData.GetRandomEnemy();
-
-                var enemy = _world.NewEntity();
-                ref var moveDown = ref enemy.Get<MoveDownComponent>();
-                ref var movable = ref enemy.Get<MovableComponent>();
-                ref var spawnable = ref enemy.Get<SpawnableComponent>();
-                ref var collider = ref enemy.Get<ColliderComponent>();
-
-                var enemyPrefab = GameObject.Instantiate(MainData.Instance.enemiesInitData.baseEnemyPrefab);
-
-                moveDown.Init(enemyPrefab, enemyData);
-                moveDown.Spawn(MainData.Instance.fieldInitData.RandomLine);
-
-                spawnable.id = enemyData.enemyName;
-                movable.speed = enemyData.moveDownSpeed;
-                collider.Init(enemyPrefab, enemyData);
+                _enemyCreator.Init(_world.NewEntity());
             }
         }
     }

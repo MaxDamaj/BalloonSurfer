@@ -1,4 +1,5 @@
 using BalloonSurfer.Components;
+using BalloonSurfer.Creators;
 using Leopotam.Ecs;
 using System.Collections;
 using System.Collections.Generic;
@@ -6,36 +7,14 @@ using UnityEngine;
 
 namespace BalloonSurfer.Systems
 {
-    public class GameInitSystem : IEcsInitSystem, IEcsDestroySystem
+    public class GameInitSystem : IEcsInitSystem
     {
         private EcsWorld _world = null;
 
-        #region API
-
         public void Init()
         {
-            InitPlayer();
-        }
-
-        public void Destroy()
-        {
-
-        }
-
-        #endregion
-
-
-        private void InitPlayer()
-        {
-            var player = _world.NewEntity();
-            ref var moveSideComponent = ref player.Get<MoveSideComponent>();
-            ref var movableComponent = ref player.Get<MovableComponent>();
-            ref var collDetector = ref player.Get<ColliderDetectorComponent>();
-
-            var playerPrefab = GameObject.Instantiate(MainData.Instance.playerInitData.prefab, Vector3.zero, Quaternion.identity);
-            movableComponent.speed = MainData.Instance.playerInitData.moveSideSpeed;
-            moveSideComponent.Init(playerPrefab);
-            collDetector.Init(playerPrefab);
+            var pCreator = new PlayerCreator();
+            pCreator.Init(_world.NewEntity());
         }
     }
 }

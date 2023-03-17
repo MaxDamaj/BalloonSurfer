@@ -17,34 +17,44 @@ MonoBehaviour:
   baseEnemyPrefab: {fileID: 2784432462286146051, guid: 6c9f8ad3de506c74c9096594d90ae158, type: 3}
   enemies:
   - enemyName: Tree Leaf 1
-    sprite: {fileID: 21300000, guid: 2f445b936b7bfb1489819665976363ab, type: 3}
-    colliderSize: {x: 8.19, y: 8.83}
+    enemySource: {fileID: 4694507426188377646, guid: 03f5b84a618af984a983ef29f3dcbb26, type: 3}
     minSpawnScore: 0
     maxSpawnScore: 200
     moveDownSpeed: 0.3
   - enemyName: Tree Leaf 2
-    sprite: {fileID: 21300000, guid: 69b2891ae818c1742adc085fc041ffa4, type: 3}
-    colliderSize: {x: 4.94, y: 10}
+    enemySource: {fileID: 4694507426188377646, guid: e160e75b857384343a6d8c2c03949a38, type: 3}
     minSpawnScore: 0
     maxSpawnScore: 200
     moveDownSpeed: 0.4
   - enemyName: Tree Leaf 3
-    sprite: {fileID: 21300000, guid: f37fd35e87671ac47beaa5613832300d, type: 3}
-    colliderSize: {x: 5.28, y: 9.22}
+    enemySource: {fileID: 4694507426188377646, guid: f4b0c4f17fc90a241b459eb06a6cc079, type: 3}
     minSpawnScore: 60
     maxSpawnScore: 300
     moveDownSpeed: 0.6
   - enemyName: Tree Leaf 4
-    sprite: {fileID: 21300000, guid: 06548e73a0c852e4f9efd2dc6fbde297, type: 3}
-    colliderSize: {x: 9.25, y: 8.83}
+    enemySource: {fileID: 4694507426188377646, guid: 7e0c296c26deffc488bc1e6efff43b18, type: 3}
     minSpawnScore: 80
     maxSpawnScore: 320
     moveDownSpeed: 0.7
   - enemyName: Tree Leaf 5
-    sprite: {fileID: 21300000, guid: 06548e73a0c852e4f9efd2dc6fbde297, type: 3}
-    colliderSize: {x: 5.1, y: 9.5}
+    enemySource: {fileID: 4694507426188377646, guid: e2813be52b0de2c4e9cd4efd5ae06830, type: 3}
     minSpawnScore: 100
     maxSpawnScore: 400
     moveDownSpeed: 0.9
+  - enemyName: Bird 1
+    enemySource: {fileID: 4694507426188377646, guid: 3847a144244f04e4e98fe0772abff15e, type: 3}
+    minSpawnScore: 150
+    maxSpawnScore: 500
+    moveDownSpeed: 1
+  - enemyName: Bird 2
+    enemySource: {fileID: 4694507426188377646, guid: e7b68ed73f6c4694ca1ba06420c19e5d, type: 3}
+    minSpawnScore: 150
+    maxSpawnScore: 500
+    moveDownSpeed: 1
+  - enemyName: Bird 3
+    enemySource: {fileID: 4694507426188377646, guid: ae24f56cce3a93449ac5501dfb766d08, type: 3}
+    minSpawnScore: 150
+    maxSpawnScore: 500
+    moveDownSpeed: 1.1
   minSpawnHeight: 120
   maxSpawnHeight: 200

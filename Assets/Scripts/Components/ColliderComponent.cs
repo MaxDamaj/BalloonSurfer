@@ -19,14 +19,14 @@ namespace BalloonSurfer.Components
 
         public void Mutate(EnemyData enemyData)
         {
-            if (spriteRenderer != null)
+            if (spriteRenderer != null && enemyData.enemySource.spriteRenderer != null)
             {
-                spriteRenderer.sprite = enemyData.sprite;
+                spriteRenderer.sprite = enemyData.enemySource.spriteRenderer.sprite;
             }
 
-            if (collider != null)
+            if (collider != null && enemyData.enemySource.boxCollider != null)
             {
-                collider.size = enemyData.colliderSize;
+                collider.size = enemyData.enemySource.boxCollider.size;
             }
         }
     }
