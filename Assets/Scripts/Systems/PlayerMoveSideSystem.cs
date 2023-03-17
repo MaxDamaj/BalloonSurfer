@@ -1,3 +1,4 @@
+using BalloonSurfer.Components;
 using DG.Tweening;
 using Leopotam.Ecs;
 using System.Collections;
@@ -6,14 +7,9 @@ using UnityEngine;
 
 namespace BalloonSurfer.Systems
 {
-    public class PlayerMoveSideSystem : IEcsInitSystem, IEcsDestroySystem, IEcsRunSystem
+    public class PlayerMoveSideSystem : IEcsInitSystem, IEcsRunSystem
     {
         private EcsFilter<MoveSideComponent, MovableComponent> _filter = null;
-
-        public void Destroy()
-        {
-            SwipeDetector.Instance.OnSwipe -= OnMoveSide;
-        }
 
         public void Init()
         {
@@ -40,15 +36,20 @@ namespace BalloonSurfer.Systems
                 ref var moveSide = ref _filter.Get1(i);
                 ref var movable = ref _filter.Get2(i);
 
-                if (1 >= (moveSide.currentLinePosition + direction) && -1 <= (moveSide.currentLinePosition + direction) && moveSide.remainingMoveTime <= 0)
+                bool canMove = MainData.Instance.fieldInitData.FieldUpperBorder >= (moveSide.currentLinePosition + direction)
+                    && MainData.Instance.fieldInitData.FieldLowerBorder <= (moveSide.currentLinePosition + direction)
+                    && moveSide.remainingMoveTime <= 0;
+
+
+                if (canMove)
                 {
-                    float moveTime = 20 / movable.speed;
+                    float moveTime = MainData.Instance.fieldInitData.FieldLineWidth / movable.speed;
 
                     moveSide.currentLinePosition += direction;
                     moveSide.remainingMoveTime = moveTime;
 
                     Sequence seq = DOTween.Sequence();
-                    seq.Append(moveSide.transform.DOMoveX(moveSide.transform.position.x + (20 * direction), moveTime));
+                    seq.Append(moveSide.transform.DOMoveX(moveSide.transform.position.x + (MainData.Instance.fieldInitData.FieldLineWidth * direction), moveTime));
                     seq.Join(moveSide.transform.DORotate(MainData.Instance.playerInitData.moveRotationAngle * direction, moveTime));
                     seq.Append(moveSide.transform.DORotate(Vector3.zero, moveTime).SetEase(Ease.InOutSine));
                 }

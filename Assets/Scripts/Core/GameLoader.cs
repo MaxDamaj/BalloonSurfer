@@ -24,6 +24,8 @@ namespace BalloonSurfer.Core
             _systems.Add(new ScoreCountingSystem());
             _systems.Add(new SpawnEnemiesSystem());
             _systems.Add(new EnemyMoveSystem());
+            _systems.Add(new EnemyMutateSystem());
+            _systems.Add(new GameEndSystem());
 
             _systems.Init();
         }

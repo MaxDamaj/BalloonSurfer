@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: PlayerData
   m_EditorClassIdentifier: 
   prefab: {fileID: 2784432462286146051, guid: 80af52e30684e3949a5bb891ab3a562b, type: 3}
-  moveSideSpeed: 15
+  moveSideSpeed: 20
   moveRotationAngle: {x: 0, y: 0, z: -20}

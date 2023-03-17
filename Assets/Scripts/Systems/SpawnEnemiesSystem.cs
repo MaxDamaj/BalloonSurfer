@@ -1,3 +1,4 @@
+using BalloonSurfer.Components;
 using Leopotam.Ecs;
 using System.Collections;
 using System.Collections.Generic;
@@ -5,12 +6,17 @@ using UnityEngine;
 
 namespace BalloonSurfer.Systems
 {
-    public class SpawnEnemiesSystem : IEcsRunSystem
+    public class SpawnEnemiesSystem : IEcsRunSystem, IEcsInitSystem
     {
         private EcsWorld _world = null;
         private EcsFilter<MoveDownComponent, SpawnableComponent> _filter = null;
 
         private float _spawnTime = 0;
+
+        public void Init()
+        {
+            _spawnTime = MainData.Instance.fieldInitData.spawnDelayTime;
+        }
 
         public void Run()
         {
@@ -22,39 +28,31 @@ namespace BalloonSurfer.Systems
             if (_spawnTime <= 0)
             {
                 SpawnEnemy();
-                _spawnTime = 4;
+                _spawnTime = MainData.Instance.enemiesInitData.enemiesSpawnDelay;
             }
         }
 
 
         private void SpawnEnemy()
         {
-            if (_filter.GetEntitiesCount() < 8)
+            if (_filter.GetEntitiesCount() < MainData.Instance.enemiesInitData.maxEnemiesOnField)
             {
-                var score = SharedData.Instance.scoreValue;
-                var enemiesData = MainData.Instance.enemiesInitData.enemies.FindAll(x => x.minSpawnScore <= score && x.maxSpawnScore >= score);
+                var enemyData = MainData.Instance.enemiesInitData.GetRandomEnemy();
 
-                if (enemiesData.Count > 0)
-                {
-                    int randomIndex = Random.Range(0, enemiesData.Count);
-                    var enemyData = enemiesData[randomIndex];
+                var enemy = _world.NewEntity();
+                ref var moveDown = ref enemy.Get<MoveDownComponent>();
+                ref var movable = ref enemy.Get<MovableComponent>();
+                ref var spawnable = ref enemy.Get<SpawnableComponent>();
+                ref var collider = ref enemy.Get<ColliderComponent>();
 
-                    var enemy = _world.NewEntity();
-                    ref var moveDown = ref enemy.Get<MoveDownComponent>();
-                    ref var movable = ref enemy.Get<MovableComponent>();
-                    enemy.Get<SpawnableComponent>();
+                var enemyPrefab = GameObject.Instantiate(MainData.Instance.enemiesInitData.baseEnemyPrefab);
 
-                    moveDown.transform = GameObject.Instantiate(enemyData.prefab).transform;
-                    moveDown.transform.position = new Vector3(
-                        Random.Range(-30f, 30f),
-                        Random.Range(MainData.Instance.enemiesInitData.minSpawnHeight, MainData.Instance.enemiesInitData.maxSpawnHeight),
-                        0
-                    );
+                moveDown.Init(enemyPrefab, enemyData);
+                moveDown.Spawn(MainData.Instance.fieldInitData.RandomLine);
 
-                    moveDown.maxSpawnScore = enemyData.maxSpawnScore;
-                    moveDown.minSpawnScore = enemyData.minSpawnScore;
-                    movable.speed = enemyData.moveDownSpeed;
-                }
+                spawnable.id = enemyData.enemyName;
+                movable.speed = enemyData.moveDownSpeed;
+                collider.Init(enemyPrefab, enemyData);
             }
         }
     }

@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct SpawnableComponent
+namespace BalloonSurfer.Components
 {
-    
+    public struct SpawnableComponent
+    {
+        public string id;
+    }
 }

@@ -1,3 +1,4 @@
+using BalloonSurfer.Components;
 using Leopotam.Ecs;
 using System.Collections;
 using System.Collections.Generic;
@@ -29,10 +30,12 @@ namespace BalloonSurfer.Systems
             var player = _world.NewEntity();
             ref var moveSideComponent = ref player.Get<MoveSideComponent>();
             ref var movableComponent = ref player.Get<MovableComponent>();
+            ref var collDetector = ref player.Get<ColliderDetectorComponent>();
 
             var playerPrefab = GameObject.Instantiate(MainData.Instance.playerInitData.prefab, Vector3.zero, Quaternion.identity);
             movableComponent.speed = MainData.Instance.playerInitData.moveSideSpeed;
-            moveSideComponent.transform = playerPrefab.transform;
+            moveSideComponent.Init(playerPrefab);
+            collDetector.Init(playerPrefab);
         }
     }
 }

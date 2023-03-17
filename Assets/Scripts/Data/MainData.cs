@@ -7,6 +7,7 @@ public class MainData : ScriptableObject
 {
     public PlayerInitData playerInitData;
     public EnemiesInitData enemiesInitData;
+    public FieldInitData fieldInitData;
 
     #region Instance
 

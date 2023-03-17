@@ -2,7 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public struct MovableComponent
+namespace BalloonSurfer.Components
 {
-    public float speed;
+    public struct MovableComponent
+    {
+        public float speed;
+    }
 }
