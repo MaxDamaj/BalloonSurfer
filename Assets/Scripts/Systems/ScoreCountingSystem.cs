@@ -1,3 +1,4 @@
+using BalloonSurfer.InitData;
 using Leopotam.Ecs;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +15,7 @@ namespace BalloonSurfer.Systems
 
         public void Run()
         {
-            SharedData.Instance.scoreValue += Time.deltaTime;
+            SharedData.Instance.scoreValue += Time.deltaTime * MainData.Instance.fieldInitData.scoresPerSecond;
         }
 
     }

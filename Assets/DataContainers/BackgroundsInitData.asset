@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e865e6bcf6e330c4db05319abd8a1e2f, type: 3}
+  m_Name: BackgroundsInitData
+  m_EditorClassIdentifier: 
+  backsSpawnDelay: 53
+  basePrefab: {fileID: 2784432462286146051, guid: 03802190542bedb4faecd40fa4e5d995, type: 3}
+  spawnHeight: 250
+  firstSpawnHeight: 113.6
+  moveSpeed: 0.05
+  backgrounds:
+  - {fileID: 21300000, guid: c17c4117ef91d904cbbee7aed3eb8b0f, type: 3}
+  - {fileID: 21300000, guid: f70cc1c3c74ceb145b3cb647df26c6e9, type: 3}
+  - {fileID: 21300000, guid: a271381bb9c435540ba37aab71c63a58, type: 3}
+  - {fileID: 21300000, guid: 092900b2e9dabdf4f81474178801b459, type: 3}
+  - {fileID: 21300000, guid: af8d39d32974cbe49becedfbaa9c6c71, type: 3}
+  - {fileID: 21300000, guid: 3185ee9cdb583184383380411d4c56cb, type: 3}
+  - {fileID: 21300000, guid: 3e73501f281605f458338933ce2e3021, type: 3}

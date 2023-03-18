@@ -1,3 +1,4 @@
+using BalloonSurfer.InitData;
 using BalloonSurfer.Systems;
 using Leopotam.Ecs;
 using System.Collections;
@@ -23,16 +24,22 @@ namespace BalloonSurfer.Core
             _systems.Add(new PlayerMoveSideSystem());
             _systems.Add(new ScoreCountingSystem());
             _systems.Add(new SpawnEnemiesSystem());
-            _systems.Add(new EnemyMoveSystem());
+            _systems.Add(new EntityMoveSystem());
             _systems.Add(new EnemyMutateSystem());
             _systems.Add(new GameEndSystem());
+            _systems.Add(new SpawnBacksSystem());
+            _systems.Add(new UpdateBacksSystem());
+            _systems.Add(new PauseGameSystem());
 
             _systems.Init();
         }
 
         void Update()
         {
-            _systems.Run();
+            if (!SharedData.Instance.isGamePaused)
+            {
+                _systems.Run();
+            }
         }
 
         private void OnDestroy()

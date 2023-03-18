@@ -190,3 +190,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 2784432461006027986}
   boxCollider: {fileID: 3984384305067661409}
+  enemyName: Tree Leaf 3
+  minSpawnScore: 60
+  maxSpawnScore: 300
+  moveDownSpeed: 0.3

@@ -5,29 +5,31 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/EnemiesInitData")]
-public class EnemiesInitData : ScriptableObject
-{
-    public int maxEnemiesOnField = 8;
-    public float enemiesSpawnDelay = 4;
-    public GameObject baseEnemyPrefab;
-    public List<EnemyData> enemies;
-    public float minSpawnHeight = 120;
-    public float maxSpawnHeight = 200;
-
-    public EnemyData GetRandomEnemy()
+namespace BalloonSurfer.InitData {
+    [CreateAssetMenu(menuName = "ScriptableObjects/EnemiesInitData")]
+    public class EnemiesInitData : ScriptableObject
     {
-        var score = SharedData.Instance.scoreValue;
-        var enemiesData = enemies.FindAll(x => x.minSpawnScore <= score && x.maxSpawnScore >= score);
+        public int maxEnemiesOnField = 8;
+        public float enemiesSpawnDelay = 4;
+        public GameObject baseEnemyPrefab;
+        public List<EnemySource> enemies;
+        public float minSpawnHeight = 120;
+        public float maxSpawnHeight = 200;
 
-        if (enemiesData.Count > 0)
+        public EnemySource GetRandomEnemy()
         {
-            int randomIndex = UnityEngine.Random.Range(0, enemiesData.Count);
-            return enemiesData[randomIndex];
-        }
-        else
-        {
-            return enemies.Last();
+            var score = SharedData.Instance.scoreValue;
+            var enemiesData = enemies.FindAll(x => x.minSpawnScore <= score && x.maxSpawnScore >= score);
+
+            if (enemiesData.Count > 0)
+            {
+                int randomIndex = UnityEngine.Random.Range(0, enemiesData.Count);
+                return enemiesData[randomIndex];
+            }
+            else
+            {
+                return enemies.Last();
+            }
         }
     }
 }

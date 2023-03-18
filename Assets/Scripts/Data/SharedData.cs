@@ -2,26 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/SharedData")]
-public class SharedData : ScriptableObject
+namespace BalloonSurfer.InitData
 {
-    public double scoreValue;
-
-    #region Instance
-
-    private static SharedData _instance = null;
-    public static SharedData Instance
+    [CreateAssetMenu(menuName = "ScriptableObjects/SharedData")]
+    public class SharedData : ScriptableObject
     {
-        get
-        {
-            if (_instance == null)
-            {
-                _instance = Resources.Load<SharedData>("SharedData");
-            }
+        public double scoreValue;
+        public int currentBackIndex;
+        public bool isGamePaused;
 
-            return _instance;
+        #region Instance
+
+        private static SharedData _instance = null;
+        public static SharedData Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = Resources.Load<SharedData>("SharedData");
+                }
+
+                return _instance;
+            }
+        }
+
+        #endregion
+
+        public int RoundedScoreValue
+        {
+            get
+            {
+                return (int)scoreValue;
+            }
         }
     }
-
-    #endregion
 }

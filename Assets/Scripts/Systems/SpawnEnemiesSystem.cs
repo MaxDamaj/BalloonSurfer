@@ -1,5 +1,6 @@
 using BalloonSurfer.Components;
 using BalloonSurfer.Creators;
+using BalloonSurfer.InitData;
 using Leopotam.Ecs;
 using System.Collections;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace BalloonSurfer.Systems
     public class SpawnEnemiesSystem : IEcsRunSystem, IEcsInitSystem
     {
         private EcsWorld _world = null;
-        private EcsFilter<MoveDownComponent, SpawnableComponent> _filter = null;
+        private EcsFilter<MovableComponent, MoveDownComponent, SpawnableComponent, ColliderComponent> _filter = null;
         private EnemyCreator _enemyCreator;
 
         private float _spawnTime = 0;

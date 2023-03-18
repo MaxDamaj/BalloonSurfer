@@ -1,4 +1,6 @@
 using BalloonSurfer.Components;
+using BalloonSurfer.Helpers;
+using BalloonSurfer.InitData;
 using DG.Tweening;
 using Leopotam.Ecs;
 using System.Collections;

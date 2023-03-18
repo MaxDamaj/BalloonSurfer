@@ -10,23 +10,31 @@ namespace BalloonSurfer.Components
         public SpriteRenderer spriteRenderer;
         public BoxCollider collider;
 
-        public void Init(GameObject prefab, EnemyData enemyData)
+        public void Init(GameObject prefab, EnemySource enemyData)
         {
-            spriteRenderer = prefab.GetComponentInChildren<SpriteRenderer>();
-            collider = prefab.GetComponent<BoxCollider>();
-            Mutate(enemyData);
-        }
-
-        public void Mutate(EnemyData enemyData)
-        {
-            if (spriteRenderer != null && enemyData.enemySource.spriteRenderer != null)
+            if (spriteRenderer == null)
             {
-                spriteRenderer.sprite = enemyData.enemySource.spriteRenderer.sprite;
+                spriteRenderer = prefab.GetComponentInChildren<SpriteRenderer>();
             }
 
-            if (collider != null && enemyData.enemySource.boxCollider != null)
+            if (collider == null)
             {
-                collider.size = enemyData.enemySource.boxCollider.size;
+                collider = prefab.GetComponent<BoxCollider>();
+            }
+
+            Init(enemyData);
+        }
+
+        public void Init(EnemySource enemyData)
+        {
+            if (spriteRenderer != null && enemyData.spriteRenderer != null)
+            {
+                spriteRenderer.sprite = enemyData.spriteRenderer.sprite;
+            }
+
+            if (collider != null && enemyData.boxCollider != null)
+            {
+                collider.size = enemyData.boxCollider.size;
             }
         }
     }

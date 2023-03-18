@@ -2,28 +2,32 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/MainData")]
-public class MainData : ScriptableObject
+namespace BalloonSurfer.InitData
 {
-    public PlayerInitData playerInitData;
-    public EnemiesInitData enemiesInitData;
-    public FieldInitData fieldInitData;
-
-    #region Instance
-
-    private static MainData _instance = null;
-    public static MainData Instance
+    [CreateAssetMenu(menuName = "ScriptableObjects/MainData")]
+    public class MainData : ScriptableObject
     {
-        get
+        public PlayerInitData playerInitData;
+        public EnemiesInitData enemiesInitData;
+        public FieldInitData fieldInitData;
+        public BackgroundsInitData backgroundsInitData;
+
+        #region Instance
+
+        private static MainData _instance = null;
+        public static MainData Instance
         {
-            if (_instance == null)
+            get
             {
-                _instance = Resources.Load<MainData>("MainData");
+                if (_instance == null)
+                {
+                    _instance = Resources.Load<MainData>("MainData");
+                }
+
+                return _instance;
             }
-
-            return _instance;
         }
-    }
 
-    #endregion
+        #endregion
+    }
 }

@@ -190,3 +190,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spriteRenderer: {fileID: 2784432461006027986}
   boxCollider: {fileID: 3984384305067661409}
+  minSpawnScore: 250
+  maxSpawnScore: 600
+  moveDownSpeed: 0.55

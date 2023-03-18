@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace BalloonSurfer.Systems
 {
-    public class EnemyMoveSystem : IEcsRunSystem
+    public class EntityMoveSystem : IEcsRunSystem
     {
         EcsFilter<MoveDownComponent, MovableComponent> _filter = null;
 

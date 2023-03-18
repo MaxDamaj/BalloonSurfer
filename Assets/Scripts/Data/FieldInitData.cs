@@ -2,54 +2,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "ScriptableObjects/FieldInitData ")]
-public class FieldInitData : ScriptableObject
+namespace BalloonSurfer.InitData
 {
-    [SerializeField, Range(3f, 9f)] private int fieldLines = 3;  //Чилос полос на поле. Работает только с нечётным числом, при чётных значениях округляется вниз до нечётного
-    public float fieldWidth = 60f;
-    public float spawnDelayTime = 3;
-
-    #region Fields
-
-    public int FieldLines
+    [CreateAssetMenu(menuName = "ScriptableObjects/FieldInitData")]
+    public class FieldInitData : ScriptableObject
     {
-        get
-        {
-            return fieldLines % 2 == 1 ? fieldLines : fieldLines - 1;
-        }
-    }
+        [SerializeField, Range(3f, 9f)] private int fieldLines = 3;  //Чилос полос на поле. Работает только с нечётным числом, при чётных значениях округляется вниз до нечётного
+        public double scoresPerSecond = 1;
+        public float fieldWidth = 60f;
+        public float spawnDelayTime = 3;
 
-    public int FieldLowerBorder
-    {
-        get
-        {
-            return -Mathf.FloorToInt(fieldLines / 2f);
-        }
-    }
+        #region Fields
 
-    public int FieldUpperBorder
-    {
-        get
+        public int FieldLines
         {
-            return Mathf.FloorToInt(fieldLines / 2f);
+            get
+            {
+                return fieldLines % 2 == 1 ? fieldLines : fieldLines - 1;
+            }
         }
-    }
 
-    public float FieldLineWidth
-    {
-        get
+        public int FieldLowerBorder
         {
-            return fieldWidth / FieldLines;
+            get
+            {
+                return -Mathf.FloorToInt(fieldLines / 2f);
+            }
         }
-    }
 
-    public int RandomLine
-    {
-        get
+        public int FieldUpperBorder
         {
-            return Random.Range(MainData.Instance.fieldInitData.FieldLowerBorder, MainData.Instance.fieldInitData.FieldUpperBorder + 1);
+            get
+            {
+                return Mathf.FloorToInt(fieldLines / 2f);
+            }
         }
-    }
 
-    #endregion
+        public float FieldLineWidth
+        {
+            get
+            {
+                return fieldWidth / FieldLines;
+            }
+        }
+
+        public int RandomLine
+        {
+            get
+            {
+                return Random.Range(MainData.Instance.fieldInitData.FieldLowerBorder, MainData.Instance.fieldInitData.FieldUpperBorder + 1);
+            }
+        }
+
+        #endregion
+    }
 }

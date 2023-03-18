@@ -16,45 +16,22 @@ MonoBehaviour:
   enemiesSpawnDelay: 4
   baseEnemyPrefab: {fileID: 2784432462286146051, guid: 6c9f8ad3de506c74c9096594d90ae158, type: 3}
   enemies:
-  - enemyName: Tree Leaf 1
-    enemySource: {fileID: 4694507426188377646, guid: 03f5b84a618af984a983ef29f3dcbb26, type: 3}
-    minSpawnScore: 0
-    maxSpawnScore: 200
-    moveDownSpeed: 0.3
-  - enemyName: Tree Leaf 2
-    enemySource: {fileID: 4694507426188377646, guid: e160e75b857384343a6d8c2c03949a38, type: 3}
-    minSpawnScore: 0
-    maxSpawnScore: 200
-    moveDownSpeed: 0.4
-  - enemyName: Tree Leaf 3
-    enemySource: {fileID: 4694507426188377646, guid: f4b0c4f17fc90a241b459eb06a6cc079, type: 3}
-    minSpawnScore: 60
-    maxSpawnScore: 300
-    moveDownSpeed: 0.6
-  - enemyName: Tree Leaf 4
-    enemySource: {fileID: 4694507426188377646, guid: 7e0c296c26deffc488bc1e6efff43b18, type: 3}
-    minSpawnScore: 80
-    maxSpawnScore: 320
-    moveDownSpeed: 0.7
-  - enemyName: Tree Leaf 5
-    enemySource: {fileID: 4694507426188377646, guid: e2813be52b0de2c4e9cd4efd5ae06830, type: 3}
-    minSpawnScore: 100
-    maxSpawnScore: 400
-    moveDownSpeed: 0.9
-  - enemyName: Bird 1
-    enemySource: {fileID: 4694507426188377646, guid: 3847a144244f04e4e98fe0772abff15e, type: 3}
-    minSpawnScore: 150
-    maxSpawnScore: 500
-    moveDownSpeed: 1
-  - enemyName: Bird 2
-    enemySource: {fileID: 4694507426188377646, guid: e7b68ed73f6c4694ca1ba06420c19e5d, type: 3}
-    minSpawnScore: 150
-    maxSpawnScore: 500
-    moveDownSpeed: 1
-  - enemyName: Bird 3
-    enemySource: {fileID: 4694507426188377646, guid: ae24f56cce3a93449ac5501dfb766d08, type: 3}
-    minSpawnScore: 150
-    maxSpawnScore: 500
-    moveDownSpeed: 1.1
-  minSpawnHeight: 120
-  maxSpawnHeight: 200
+  - {fileID: 4694507426188377646, guid: 03f5b84a618af984a983ef29f3dcbb26, type: 3}
+  - {fileID: 4694507426188377646, guid: e160e75b857384343a6d8c2c03949a38, type: 3}
+  - {fileID: 4694507426188377646, guid: f4b0c4f17fc90a241b459eb06a6cc079, type: 3}
+  - {fileID: 4694507426188377646, guid: 7e0c296c26deffc488bc1e6efff43b18, type: 3}
+  - {fileID: 4694507426188377646, guid: e2813be52b0de2c4e9cd4efd5ae06830, type: 3}
+  - {fileID: 4694507426188377646, guid: 3847a144244f04e4e98fe0772abff15e, type: 3}
+  - {fileID: 4694507426188377646, guid: e7b68ed73f6c4694ca1ba06420c19e5d, type: 3}
+  - {fileID: 4694507426188377646, guid: ae24f56cce3a93449ac5501dfb766d08, type: 3}
+  - {fileID: 4694507426188377646, guid: eca20a4c702c1f841ab3ca97c5db133f, type: 3}
+  - {fileID: 4694507426188377646, guid: 29b18ab16978c604b9dc75114041106a, type: 3}
+  - {fileID: 4694507426188377646, guid: 04f661c527953074bb556365e32f2971, type: 3}
+  - {fileID: 4694507426188377646, guid: 9082fc5a4cd488f4f859f66b1a9a4a9b, type: 3}
+  - {fileID: 4694507426188377646, guid: 32c758e7346eae94b839521c34d94a3a, type: 3}
+  - {fileID: 4694507426188377646, guid: c5b94ed6c4d5b6a40b5d1c606040b2e1, type: 3}
+  - {fileID: 4694507426188377646, guid: 7e58815537b90e04aa7ad5fce8542480, type: 3}
+  - {fileID: 4694507426188377646, guid: 24ba9567b2417484c92ae6ff3a8260e6, type: 3}
+  - {fileID: 4694507426188377646, guid: 2a8585b8234d2124ab81d80bc8186cc3, type: 3}
+  minSpawnHeight: 100
+  maxSpawnHeight: 160
