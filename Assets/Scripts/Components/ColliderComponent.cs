@@ -1,4 +1,4 @@
-using BalloonSurfer.Helpers;
+using BalloonSurfer.EntitySources;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,7 +8,7 @@ namespace BalloonSurfer.Components
     public struct ColliderComponent
     {
         public SpriteRenderer spriteRenderer;
-        public BoxCollider collider;
+        public BoxCollider2D collider;
 
         public void Init(GameObject prefab, EnemySource enemyData)
         {
@@ -19,7 +19,7 @@ namespace BalloonSurfer.Components
 
             if (collider == null)
             {
-                collider = prefab.GetComponent<BoxCollider>();
+                collider = prefab.GetComponent<BoxCollider2D>();
             }
 
             Init(enemyData);

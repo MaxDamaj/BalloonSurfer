@@ -64,6 +64,7 @@ public class ProjectMap : EditorWindow
             new ScriptCategories("Components", Color.white),
             new ScriptCategories("Systems", Color.white),
             new ScriptCategories("InitData", Color.white),
+            new ScriptCategories("EntitySources", Color.white),
         };
 
         _importantClasses = new List<string>
@@ -71,7 +72,8 @@ public class ProjectMap : EditorWindow
             "GameLoader",
             "EntityCreator",
             "MainData",
-            "SharedData"
+            "SharedData",
+            "EntitySource"
         };
 
         InitMap();
@@ -92,7 +94,7 @@ public class ProjectMap : EditorWindow
         scrollPosition = GUILayout.BeginScrollView(scrollPosition, GUILayout.ExpandWidth(true));
 
         DrawAreas(0, 4);    //Unity
-        DrawAreas(4, 3);    //Ecs
+        DrawAreas(4, 4);    //Ecs
 
         //Unsorted
         if (_unsortedTypes != null && _unsortedTypes.Count > 0)

@@ -8,12 +8,17 @@ using UnityEngine;
 
 namespace BalloonSurfer.Systems
 {
-    public class SpawnBacksSystem : IEcsInitSystem
+    public class SpawnBacksSystem : IEcsInitSystem, IEcsDestroySystem
     {
         private EcsWorld _world = null;
         private BackgroundCreator _backgroundCreator;
 
         private EcsFilter<MovableComponent, MoveDownComponent, SpawnableComponent, SpriteComponent> _filter = null;
+
+        public void Destroy()
+        {
+            SharedData.Instance.currentBackIndex = -1;
+        }
 
         public void Init()
         {
@@ -36,7 +41,7 @@ namespace BalloonSurfer.Systems
         private void Spawn()
         {
             var entity = _world.NewEntity();
-            _backgroundCreator.Init(entity);
+            _backgroundCreator.Init(null, entity);
 
             ref var spawnable = ref entity.Get<SpawnableComponent>();
             ref var sprite = ref entity.Get<SpriteComponent>();

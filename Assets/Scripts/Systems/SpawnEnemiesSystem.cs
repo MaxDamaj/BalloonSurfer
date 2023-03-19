@@ -12,13 +12,11 @@ namespace BalloonSurfer.Systems
     {
         private EcsWorld _world = null;
         private EcsFilter<MovableComponent, MoveDownComponent, SpawnableComponent, ColliderComponent> _filter = null;
-        private EnemyCreator _enemyCreator;
 
         private float _spawnTime = 0;
 
         public void Init()
         {
-            _enemyCreator = new EnemyCreator();
             _spawnTime = MainData.Instance.fieldInitData.spawnDelayTime;
         }
 
@@ -41,7 +39,8 @@ namespace BalloonSurfer.Systems
         {
             if (_filter.GetEntitiesCount() < MainData.Instance.enemiesInitData.maxEnemiesOnField)
             {
-                _enemyCreator.Init(_world.NewEntity());
+                var enemy = MainData.Instance.enemiesInitData.GetRandomEnemy();
+                enemy.Creator.Init(enemy, _world.NewEntity());
             }
         }
     }

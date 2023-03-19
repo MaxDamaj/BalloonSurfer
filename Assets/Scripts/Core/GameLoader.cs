@@ -30,6 +30,7 @@ namespace BalloonSurfer.Core
             _systems.Add(new SpawnBacksSystem());
             _systems.Add(new UpdateBacksSystem());
             _systems.Add(new PauseGameSystem());
+            _systems.Add(new MoveLeftRightSystem());
 
             _systems.Init();
         }

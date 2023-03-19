@@ -14,7 +14,7 @@ namespace BalloonSurfer.Systems
         public void Init()
         {
             var pCreator = new PlayerCreator();
-            pCreator.Init(_world.NewEntity());
+            pCreator.Init(null, _world.NewEntity());
         }
     }
 }

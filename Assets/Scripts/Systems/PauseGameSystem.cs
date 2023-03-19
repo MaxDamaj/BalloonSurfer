@@ -1,5 +1,6 @@
 using BalloonSurfer.InitData;
 using BalloonSurfer.UI;
+using DG.Tweening;
 using Leopotam.Ecs;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,14 +14,23 @@ namespace BalloonSurfer.Systems
         {
             UIMainScreenPanel.OnPause -= PauseGame;
             UIMainScreenPanel.OnUnpause -= UnpauseGame;
+            UnpauseGame();
         }
 
         public void Init()
         {
             UIMainScreenPanel.OnPause += PauseGame;
             UIMainScreenPanel.OnUnpause += UnpauseGame;
-            UnpauseGame();
+            PauseGame();
+
+            Sequence seq = DOTween.Sequence();
+            seq.AppendInterval(4f);
+            seq.AppendCallback(UnpauseGame);
+
+            seq.SetUpdate(true);
+            seq.Play();
         }
+
 
         public void PauseGame()
         {

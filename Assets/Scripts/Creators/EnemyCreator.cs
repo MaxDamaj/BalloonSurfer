@@ -1,18 +1,16 @@
 using BalloonSurfer.Components;
-using BalloonSurfer.Helpers;
+using BalloonSurfer.EntitySources;
 using BalloonSurfer.InitData;
 using Leopotam.Ecs;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BalloonSurfer.Creators
 {
-    public class EnemyCreator : EntityCreator
+    public class EnemyCreator : MutableCreator
     {
-        public override void Init(EcsEntity entity)
+        public override void Init(EntitySource source, EcsEntity entity)
         {
-            var enemyData = MainData.Instance.enemiesInitData.GetRandomEnemy();
+            var enemyData = source as EnemySource;
 
             ref var moveDown = ref entity.Get<MoveDownComponent>();
             ref var movable = ref entity.Get<MovableComponent>();
@@ -33,14 +31,15 @@ namespace BalloonSurfer.Creators
             spawnable.Spawn(MainData.Instance.fieldInitData.RandomLine);
         }
 
-        public void Mutate(EcsEntity entity)
+        public override void Mutate(MutableSource source, EcsEntity entity)
         {
+            var enemyData = source as EnemySource;
+
             ref var collider = ref entity.Get<ColliderComponent>();
             ref var spawnable = ref entity.Get<SpawnableComponent>();
             ref var movable = ref entity.Get<MovableComponent>();
             ref var mutate = ref entity.Get<MutateComponent>();
 
-            var enemyData = MainData.Instance.enemiesInitData.GetRandomEnemy();
             if (spawnable.id != enemyData.name)
             {
                 collider.Init(enemyData);

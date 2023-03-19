@@ -1,9 +1,11 @@
+using BalloonSurfer.EntitySources;
 using BalloonSurfer.Helpers;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace BalloonSurfer.InitData {
     [CreateAssetMenu(menuName = "ScriptableObjects/EnemiesInitData")]
@@ -16,20 +18,24 @@ namespace BalloonSurfer.InitData {
         public float minSpawnHeight = 120;
         public float maxSpawnHeight = 200;
 
-        public EnemySource GetRandomEnemy()
+        public MutableSource GetRandomEnemy()
         {
             var score = SharedData.Instance.scoreValue;
             var enemiesData = enemies.FindAll(x => x.minSpawnScore <= score && x.maxSpawnScore >= score);
+            MutableSource enemy;
 
             if (enemiesData.Count > 0)
             {
                 int randomIndex = UnityEngine.Random.Range(0, enemiesData.Count);
-                return enemiesData[randomIndex];
+                enemy = enemiesData[randomIndex];
             }
             else
             {
-                return enemies.Last();
+                enemy = enemies.Last();
             }
+
+            enemy.SetCreator();
+            return enemy;
         }
     }
 }

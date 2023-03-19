@@ -5,18 +5,13 @@ using Leopotam.Ecs;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace BalloonSurfer.Systems
 {
-    public class EnemyMutateSystem : IEcsRunSystem, IEcsInitSystem
+    public class EnemyMutateSystem : IEcsRunSystem
     {
         private EcsFilter<SpawnableComponent, MutateComponent> _filter = null;
-        private EnemyCreator _enemyCreator;
-
-        public void Init()
-        {
-            _enemyCreator = new EnemyCreator();
-        }
 
         public void Run()
         {
@@ -27,10 +22,18 @@ namespace BalloonSurfer.Systems
 
                 if (spawnable.transform.position.y <= -50 && mutate.IsMutate)
                 {
+                    RemoveUniqueComponents(_filter.GetEntity(i));
+
                     spawnable.Spawn(MainData.Instance.fieldInitData.RandomLine);
-                    _enemyCreator.Mutate(_filter.GetEntity(i));
+                    var enemy = MainData.Instance.enemiesInitData.GetRandomEnemy();
+                    enemy.Creator.Mutate(enemy, _filter.GetEntity(i));
                 }
             }
+        }
+
+        private void RemoveUniqueComponents(EcsEntity entity)
+        {
+            entity.Del<MoveLeftRightComponent>();
         }
 
     }

@@ -6,8 +6,13 @@ using UnityEngine;
 
 namespace BalloonSurfer.Systems
 {
-    public class ScoreCountingSystem : IEcsRunSystem, IEcsInitSystem
+    public class ScoreCountingSystem : IEcsRunSystem, IEcsInitSystem, IEcsDestroySystem
     {
+        public void Destroy()
+        {
+            SharedData.Instance.scoreValue = 0;
+        }
+
         public void Init()
         {
             SharedData.Instance.scoreValue = 0;

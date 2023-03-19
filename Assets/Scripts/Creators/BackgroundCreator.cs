@@ -1,15 +1,14 @@
 using BalloonSurfer.Components;
+using BalloonSurfer.EntitySources;
 using BalloonSurfer.InitData;
 using Leopotam.Ecs;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace BalloonSurfer.Creators
 {
     public class BackgroundCreator : EntityCreator
     {
-        public override void Init(EcsEntity entity)
+        public override void Init(EntitySource source, EcsEntity entity)
         {
             ref var moveDown = ref entity.Get<MoveDownComponent>();
             ref var movable = ref entity.Get<MovableComponent>();

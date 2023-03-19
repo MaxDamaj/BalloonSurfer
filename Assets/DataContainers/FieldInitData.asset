@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: FieldInitData
   m_EditorClassIdentifier: 
   fieldLines: 3
-  scoresPerSecond: 8
+  scoresPerSecond: 10
   fieldWidth: 60
   spawnDelayTime: 3
