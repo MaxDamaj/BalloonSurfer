@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace BalloonSurfer.Components
 {
-    public struct MovableComponent : IComponent
+    public interface IComponent
     {
-        public float speed;
+
     }
 }

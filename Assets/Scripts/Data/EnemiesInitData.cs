@@ -9,7 +9,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 namespace BalloonSurfer.InitData {
     [CreateAssetMenu(menuName = "ScriptableObjects/EnemiesInitData")]
-    public class EnemiesInitData : ScriptableObject
+    public class EnemiesInitData : InitData
     {
         public int maxEnemiesOnField = 8;
         public float enemiesSpawnDelay = 4;

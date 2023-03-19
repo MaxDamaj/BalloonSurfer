@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace BalloonSurfer.Components
 {
-    public struct MutateComponent
+    public struct MutateComponent : IComponent
     {
         public double minSpawnScore;
         public double maxSpawnScore;

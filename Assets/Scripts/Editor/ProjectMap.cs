@@ -73,7 +73,9 @@ public class ProjectMap : EditorWindow
             "EntityCreator",
             "MainData",
             "SharedData",
-            "EntitySource"
+            "EntitySource",
+            "IComponent",
+            "InitData"
         };
 
         InitMap();

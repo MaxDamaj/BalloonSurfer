@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BalloonSurfer.InitData
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/FieldInitData")]
-    public class FieldInitData : ScriptableObject
+    public class FieldInitData : InitData
     {
         [SerializeField, Range(3f, 9f)] private int fieldLines = 3;  //Чилос полос на поле. Работает только с нечётным числом, при чётных значениях округляется вниз до нечётного
         public double scoresPerSecond = 1;
@@ -50,7 +50,7 @@ namespace BalloonSurfer.InitData
         {
             get
             {
-                return Random.Range(MainData.Instance.fieldInitData.FieldLowerBorder, MainData.Instance.fieldInitData.FieldUpperBorder + 1);
+                return Random.Range(MainData.GetData<FieldInitData>().FieldLowerBorder, MainData.GetData<FieldInitData>().FieldUpperBorder + 1);
             }
         }
 

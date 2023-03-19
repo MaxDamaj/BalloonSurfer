@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace BalloonSurfer.Components
 {
-    public struct SpawnableComponent
+    public struct SpawnableComponent : IComponent
     {
         public string id;
         public Transform transform;
@@ -27,7 +27,7 @@ namespace BalloonSurfer.Components
         public void Spawn(int line)
         {
             transform.position = new Vector3(
-                line * MainData.Instance.fieldInitData.FieldLineWidth,
+                line * MainData.GetData<FieldInitData>().FieldLineWidth,
                 Random.Range(_minSpawnHeight,_maxSpawnHeight),
                 0
              );

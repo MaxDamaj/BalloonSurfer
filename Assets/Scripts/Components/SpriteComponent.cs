@@ -4,13 +4,16 @@ using UnityEngine;
 
 namespace BalloonSurfer.Components
 {
-    public struct SpriteComponent
+    public struct SpriteComponent : IComponent
     {
         public SpriteRenderer spriteRenderer;
 
         public void Init(GameObject prefab)
         {
-            spriteRenderer = prefab.GetComponentInChildren<SpriteRenderer>();
+            if (spriteRenderer == null)
+            {
+                spriteRenderer = prefab.GetComponentInChildren<SpriteRenderer>();
+            }
         }
 
         public void Init(Sprite sprite)

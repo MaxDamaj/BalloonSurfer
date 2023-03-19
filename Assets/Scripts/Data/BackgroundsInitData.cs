@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BalloonSurfer.InitData
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/BackgroundsInitData")]
-    public class BackgroundsInitData : ScriptableObject
+    public class BackgroundsInitData : InitData
     {
         public float backsSpawnDelay = 10f;
 

@@ -15,12 +15,12 @@ namespace BalloonSurfer.Creators
             ref var spawnable = ref entity.Get<SpawnableComponent>();
             ref var sprite = ref entity.Get<SpriteComponent>();
 
-            var playerPrefab = GameObject.Instantiate(MainData.Instance.backgroundsInitData.basePrefab, Vector3.zero, Quaternion.identity);
+            var backgroundPrefab = GameObject.Instantiate(MainData.GetData<BackgroundsInitData>().basePrefab, Vector3.zero, Quaternion.identity);
 
-            movable.speed = MainData.Instance.backgroundsInitData.moveSpeed;
-            moveDown.Init(playerPrefab);
-            spawnable.Init(playerPrefab, MainData.Instance.backgroundsInitData.spawnHeight, MainData.Instance.backgroundsInitData.spawnHeight);
-            sprite.Init(playerPrefab);
+            movable.speed = MainData.GetData<BackgroundsInitData>().moveSpeed;
+            moveDown.Init(backgroundPrefab);
+            spawnable.Init(backgroundPrefab, MainData.GetData<BackgroundsInitData>().spawnHeight, MainData.GetData<BackgroundsInitData>().spawnHeight);
+            sprite.Init(backgroundPrefab);
         }
     }
 }

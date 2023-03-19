@@ -24,8 +24,8 @@ namespace BalloonSurfer.Systems
                 {
                     RemoveUniqueComponents(_filter.GetEntity(i));
 
-                    spawnable.Spawn(MainData.Instance.fieldInitData.RandomLine);
-                    var enemy = MainData.Instance.enemiesInitData.GetRandomEnemy();
+                    spawnable.Spawn(MainData.GetData<FieldInitData>().RandomLine);
+                    var enemy = MainData.GetData<EnemiesInitData>().GetRandomEnemy();
                     enemy.Creator.Mutate(enemy, _filter.GetEntity(i));
                 }
             }

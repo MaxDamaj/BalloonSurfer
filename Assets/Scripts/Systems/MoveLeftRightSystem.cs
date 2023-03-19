@@ -16,8 +16,8 @@ namespace BalloonSurfer.Systems
 
         public void Init()
         {
-            _leftBorder = MainData.Instance.fieldInitData.FieldLowerBorder * MainData.Instance.fieldInitData.FieldLineWidth - MainData.Instance.fieldInitData.FieldLineWidth / 2;
-            _rightBorder = MainData.Instance.fieldInitData.FieldUpperBorder * MainData.Instance.fieldInitData.FieldLineWidth + MainData.Instance.fieldInitData.FieldLineWidth / 2;
+            _leftBorder = MainData.GetData<FieldInitData>().FieldLowerBorder * MainData.GetData<FieldInitData>().FieldLineWidth - MainData.GetData<FieldInitData>().FieldLineWidth / 2;
+            _rightBorder = MainData.GetData<FieldInitData>().FieldUpperBorder * MainData.GetData<FieldInitData>().FieldLineWidth + MainData.GetData<FieldInitData>().FieldLineWidth / 2;
         }
 
         public void Run()

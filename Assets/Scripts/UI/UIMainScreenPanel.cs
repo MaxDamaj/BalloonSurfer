@@ -1,3 +1,4 @@
+using BalloonSurfer.Helpers;
 using BalloonSurfer.InitData;
 using System;
 using System.Collections;
@@ -8,7 +9,7 @@ using UnityEngine.UI;
 
 namespace BalloonSurfer.UI
 {
-    public class UIMainScreenPanel : MonoBehaviour
+    public class UIMainScreenPanel : MonoBehaviour, IScoreUpdate
     {
         [SerializeField] private Button _buttonPause = null;
         [SerializeField] private TextMeshProUGUI _textScore = null;
@@ -20,9 +21,9 @@ namespace BalloonSurfer.UI
             _buttonPause.onClick.AddListener(PauseGame);
         }
 
-        void Update()
+        public void UpdateScore(int scoreValue)
         {
-            _textScore.text = SharedData.Instance.RoundedScoreValue.ToString();
+            _textScore.text = scoreValue.ToString();
         }
 
 
@@ -37,5 +38,7 @@ namespace BalloonSurfer.UI
                 OnPause?.Invoke();
             }
         }
+
+        
     }
 }

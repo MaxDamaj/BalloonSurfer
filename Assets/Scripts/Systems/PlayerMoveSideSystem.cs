@@ -38,21 +38,21 @@ namespace BalloonSurfer.Systems
                 ref var moveSide = ref _filter.Get1(i);
                 ref var movable = ref _filter.Get2(i);
 
-                bool canMove = MainData.Instance.fieldInitData.FieldUpperBorder >= (moveSide.currentLinePosition + direction)
-                    && MainData.Instance.fieldInitData.FieldLowerBorder <= (moveSide.currentLinePosition + direction)
+                bool canMove = MainData.GetData<FieldInitData>().FieldUpperBorder >= (moveSide.currentLinePosition + direction)
+                    && MainData.GetData<FieldInitData>().FieldLowerBorder <= (moveSide.currentLinePosition + direction)
                     && moveSide.remainingMoveTime <= 0;
 
 
                 if (canMove)
                 {
-                    float moveTime = MainData.Instance.fieldInitData.FieldLineWidth / movable.speed;
+                    float moveTime = MainData.GetData<FieldInitData>().FieldLineWidth / movable.speed;
 
                     moveSide.currentLinePosition += direction;
                     moveSide.remainingMoveTime = moveTime;
 
                     Sequence seq = DOTween.Sequence();
-                    seq.Append(moveSide.transform.DOMoveX(moveSide.transform.position.x + (MainData.Instance.fieldInitData.FieldLineWidth * direction), moveTime));
-                    seq.Join(moveSide.transform.DORotate(MainData.Instance.playerInitData.moveRotationAngle * direction, moveTime));
+                    seq.Append(moveSide.transform.DOMoveX(moveSide.transform.position.x + (MainData.GetData<FieldInitData>().FieldLineWidth * direction), moveTime));
+                    seq.Join(moveSide.transform.DORotate(MainData.GetData<PlayerInitData>().moveRotationAngle * direction, moveTime));
                     seq.Append(moveSide.transform.DORotate(Vector3.zero, moveTime).SetEase(Ease.InOutSine));
                 }
             }

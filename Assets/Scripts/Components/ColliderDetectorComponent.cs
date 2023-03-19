@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace BalloonSurfer.Components
 {
-    public struct ColliderDetectorComponent
+    public struct ColliderDetectorComponent : IComponent
     {
         public CollisionDetector collisionDetector;
 

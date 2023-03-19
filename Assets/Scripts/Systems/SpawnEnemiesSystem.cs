@@ -17,7 +17,7 @@ namespace BalloonSurfer.Systems
 
         public void Init()
         {
-            _spawnTime = MainData.Instance.fieldInitData.spawnDelayTime;
+            _spawnTime = MainData.GetData<FieldInitData>().spawnDelayTime;
         }
 
         public void Run()
@@ -30,16 +30,16 @@ namespace BalloonSurfer.Systems
             if (_spawnTime <= 0)
             {
                 SpawnEnemy();
-                _spawnTime = MainData.Instance.enemiesInitData.enemiesSpawnDelay;
+                _spawnTime = MainData.GetData<EnemiesInitData>().enemiesSpawnDelay;
             }
         }
 
 
         private void SpawnEnemy()
         {
-            if (_filter.GetEntitiesCount() < MainData.Instance.enemiesInitData.maxEnemiesOnField)
+            if (_filter.GetEntitiesCount() < MainData.GetData<EnemiesInitData>().maxEnemiesOnField)
             {
-                var enemy = MainData.Instance.enemiesInitData.GetRandomEnemy();
+                var enemy = MainData.GetData<EnemiesInitData>().GetRandomEnemy();
                 enemy.Creator.Init(enemy, _world.NewEntity());
             }
         }

@@ -14,8 +14,8 @@ namespace BalloonSurfer.Creators
             ref var movableComponent = ref entity.Get<MovableComponent>();
             ref var collDetector = ref entity.Get<ColliderDetectorComponent>();
 
-            var playerPrefab = GameObject.Instantiate(MainData.Instance.playerInitData.prefab, Vector3.zero, Quaternion.identity);
-            movableComponent.speed = MainData.Instance.playerInitData.moveSideSpeed;
+            var playerPrefab = GameObject.Instantiate(MainData.GetData<PlayerInitData>().prefab, Vector3.zero, Quaternion.identity);
+            movableComponent.speed = MainData.GetData<PlayerInitData>().moveSideSpeed;
             moveSideComponent.Init(playerPrefab);
             collDetector.Init(playerPrefab);
         }

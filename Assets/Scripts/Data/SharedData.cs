@@ -28,13 +28,5 @@ namespace BalloonSurfer.InitData
         }
 
         #endregion
-
-        public int RoundedScoreValue
-        {
-            get
-            {
-                return (int)scoreValue;
-            }
-        }
     }
 }

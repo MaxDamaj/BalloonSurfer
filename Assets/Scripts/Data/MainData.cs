@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,27 +8,29 @@ namespace BalloonSurfer.InitData
     [CreateAssetMenu(menuName = "ScriptableObjects/MainData")]
     public class MainData : ScriptableObject
     {
-        public PlayerInitData playerInitData;
-        public EnemiesInitData enemiesInitData;
-        public FieldInitData fieldInitData;
-        public BackgroundsInitData backgroundsInitData;
+        [SerializeField] private List<InitData> _initDatas = null;
 
-        #region Instance
-
+        private Dictionary<Type, InitData> _initDataDictionary = null;
         private static MainData _instance = null;
-        public static MainData Instance
+
+
+        public static T GetData<T>() where T : InitData
         {
-            get
+            if (_instance == null)
             {
-                if (_instance == null)
-                {
-                    _instance = Resources.Load<MainData>("MainData");
-                }
-
-                return _instance;
+                _instance = Resources.Load<MainData>("MainData");
             }
-        }
 
-        #endregion
+            if (_instance._initDataDictionary == null)
+            {
+                _instance._initDataDictionary = new Dictionary<Type, InitData>();
+                foreach (var data in _instance._initDatas)
+                {
+                    _instance._initDataDictionary[data.GetType()] = data;
+                }
+            }
+
+            return (T)_instance._initDataDictionary[typeof(T)];
+        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BalloonSurfer.Components
 {
-    public struct MoveLeftRightComponent
+    public struct MoveLeftRightComponent : IComponent
     {
         public Transform transform;
         public float speed;

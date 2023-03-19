@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace BalloonSurfer.Components
 {
-    public struct MoveDownComponent
+    public struct MoveDownComponent : IComponent
     {
         public Transform transform;
 

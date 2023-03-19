@@ -7,14 +7,9 @@ using UnityEngine;
 
 namespace BalloonSurfer.Systems
 {
-    public class UpdateBacksSystem : IEcsInitSystem, IEcsRunSystem
+    public class UpdateBacksSystem : IEcsRunSystem
     {
-        private EcsFilter<MovableComponent, MoveDownComponent, SpawnableComponent, SpriteComponent> _filter = null;
-
-        public void Init()
-        {
-            _filter.ExcludedTypes = new System.Type[] { typeof(ColliderComponent) };
-        }
+        private EcsFilter<MovableComponent, MoveDownComponent, SpawnableComponent, SpriteComponent>.Exclude<ColliderComponent> _filter = null;
 
         public void Run()
         {
@@ -22,7 +17,7 @@ namespace BalloonSurfer.Systems
             {
                 ref var moveDown = ref _filter.Get2(i);
 
-                if (moveDown.transform.position.y <= MainData.Instance.backgroundsInitData.DespawnHeight)
+                if (moveDown.transform.position.y <= MainData.GetData<BackgroundsInitData>().DespawnHeight)
                 {
                     UpdatePosition(_filter.GetEntity(i));
                 }
@@ -35,8 +30,8 @@ namespace BalloonSurfer.Systems
             ref var spawnable = ref entity.Get<SpawnableComponent>();
             ref var sprite = ref entity.Get<SpriteComponent>();
 
-            sprite.Init(MainData.Instance.backgroundsInitData.NextBackgroundSprite);
-            spawnable.SetHeight(MainData.Instance.backgroundsInitData.spawnHeight);
+            sprite.Init(MainData.GetData<BackgroundsInitData>().NextBackgroundSprite);
+            spawnable.SetHeight(MainData.GetData<BackgroundsInitData>().spawnHeight);
         }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace BalloonSurfer.Components
 {
-    public struct MoveSideComponent
+    public struct MoveSideComponent : IComponent
     {
         public Transform transform;
         public int currentLinePosition;

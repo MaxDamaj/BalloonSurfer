@@ -5,7 +5,7 @@ using UnityEngine;
 namespace BalloonSurfer.InitData
 {
     [CreateAssetMenu(menuName = "ScriptableObjects/PlayerInitData")]
-    public class PlayerInitData : ScriptableObject
+    public class PlayerInitData : InitData
     {
         public GameObject prefab;
         public float moveSideSpeed = 15;
